@@ -1,6 +1,6 @@
 let money = 40000; 
 let income = 5000; 
-let addExpenses = 'Интернет, Транспорт, Комуналка'; 
+let addExpenses = 'Интернет, Транспорт, Комуналка, Кафе'; 
 let deposit = true;
 let mission = 100000; 
 let period = 6;
