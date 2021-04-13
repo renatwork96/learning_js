@@ -12,7 +12,7 @@ let start = function() {
  } while (!isNumber(money) || money === '' || money === null);
 };
 
-let cycleQuestionNumbers = function(question) {
+let checkQuestionNumbers = function(question) {
   let returnNumber = 0;
   do {
     returnNumber = prompt(question);
@@ -20,7 +20,7 @@ let cycleQuestionNumbers = function(question) {
   return +returnNumber;
 };
 
-let cycleQuestionText = function(question) {
+let checkQuestionText = function(question) {
   let returnText = 0;
   do {
     returnText = prompt(question);
@@ -49,11 +49,11 @@ let appData = {
   asking: function() {
 
     if(confirm('Есть ли у вас дополнительный заработок?')){
-      let itemIncome = cycleQuestionText('Какой у вас дополнительный заработок?');
-      appData.income[itemIncome] = cycleQuestionNumbers('Сколько в месяц вы на этом зарабатываете?');
+      let itemIncome = checkQuestionText('Какой у вас дополнительный заработок?');
+      appData.income[itemIncome] = checkQuestionNumbers('Сколько в месяц вы на этом зарабатываете?');
     }
 
-    let addExpenses =cycleQuestionText('Перечислите возможные расходы за рассчитываемый период через запятую');
+    let addExpenses =checkQuestionText('Перечислите возможные расходы за рассчитываемый период через запятую');
     appData.addExpenses = addExpenses.toLowerCase().split(', ');
 
     let i = 0;
@@ -75,7 +75,7 @@ let appData = {
           } while (!isNumber(amount) || amount === '' || amount === null);
         return +amount;
       };
-      appData.expenses[cycleQuestionText('Введите обязательную статью расходов?')] = cashExpenses();
+      appData.expenses[checkQuestionText('Введите обязательную статью расходов?')] = cashExpenses();
       
     }
 
@@ -112,8 +112,8 @@ let appData = {
 
   getInfoDeposit: function(){
     if(appData.deposit) {
-      appData.precentDeposit = cycleQuestionNumbers('Какой годовой процент?');
-      appData.moneyDeposit = cycleQuestionNumbers('Какая сумма заложена?');
+      appData.precentDeposit = checkQuestionNumbers('Какой годовой процент?');
+      appData.moneyDeposit = checkQuestionNumbers('Какая сумма заложена?');
     }
   },
   calcSavedMoney: function() {
