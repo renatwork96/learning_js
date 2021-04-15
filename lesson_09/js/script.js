@@ -7,14 +7,11 @@ const pluse2 = document.getElementsByTagName('button')[1];
 
 const depositCheck = document.querySelector('#deposit-check');
 
-const incomeItem = document.querySelectorAll('additional_income-item');
+const incomeItem = document.querySelectorAll('.additional_income-item');
 
 const value = document.querySelectorAll('[class*="-value"]');
-console.log(value);
+console.log(incomeItem);
 
-//Вопросы по отсеву
-// const value = document.querySelectorAll('.result-total');
-// console.log(value.querySelectorAll('budget_month-value'));
 
 const salaryAmount = document.querySelector('.salary-amount');
 const incomeTitle = document.querySelector('.income-title');
