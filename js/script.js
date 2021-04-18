@@ -158,7 +158,6 @@ let appData = {
     for (let key in appData.expenses) {
       sum += +appData.expenses[key];
     }
-    console.log(sum + 'getExpensesMonth');
     return sum;
   },
 
@@ -167,14 +166,14 @@ let appData = {
     for (let key in appData.income) {
       sum += +appData.income[key];
     }
-    console.log(sum + 'getIncomeMonth');
     return sum;
     
   },
 
   blockStartBtn: function() {
-    if((salaryAmount.value === '') || !isNumber(salaryAmount.value)){
+    if((salaryAmount.value === '') || !isNumber(salaryAmount.value) || (salaryAmount.value === null)){
       start.disabled = true;
+      
     } else {
       start.disabled = false;
       start.addEventListener('click', appData.start);
@@ -214,7 +213,7 @@ let appData = {
   }
 };
 
-
+start.disabled = true;
 salaryAmount.addEventListener('input', appData.blockStartBtn);
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
@@ -223,7 +222,6 @@ periodSelect.addEventListener("change", function() {
   periodAmount.innerHTML = this.value;
   incomePeriodValue.value =  appData.calcPeriod();
 });
-
 
 appData.getTargetMonth();
 
