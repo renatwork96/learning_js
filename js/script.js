@@ -78,6 +78,21 @@ let appData = {
     appData.getBudget();
 
     appData.showResult();
+    if (start.innerHTML === 'Рассчитать') {
+      //appData.blockInputs();
+      start.innerHTML = 'Сбросить';
+      let inputText = document.querySelectorAll('input');
+      inputText.forEach(function(item){
+      item.disabled = true;
+      });
+    } else {
+      start.innerHTML = 'Рассчитать';
+      appData.reset();
+      let inputText = document.querySelectorAll('input');
+      inputText.forEach(function(item){
+      item.disabled = false;
+      });
+    }
   },
 
   showResult: function() {
@@ -210,6 +225,28 @@ let appData = {
   },
   calcPeriod: function() {
     return appData.budgetMonth * periodSelect.value;
+  },
+
+  reset: function() {
+    appData.budget = 0;
+    appData.budgetDay = 0;
+    appData.budgetMonth = 0;
+    appData.expensesMonth = 0;
+    appData.income = {};
+    appData.incomeMonth = 0;
+    appData.addIncome = [];
+    appData.expenses = {};
+    appData.addExpenses = [];
+    appData.deposit = false;
+    appData.precentDeposit = 0;
+    appData.moneyDeposit = 0;
+    budgetMonthValue.value = appData.budgetMonth;
+    budgetDayValue.value = appData.budgetDay;
+    expensesMonthValue.value = appData.expensesMonth;
+    additionalExpensesValue.value = appData.addExpenses;
+    additionalIncmeValue.value = appData.addIncome;
+    targetMonthValue.value = 'Срок';
+    incomePeriodValue.value =  0;
   }
 };
 
