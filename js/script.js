@@ -79,7 +79,6 @@ let appData = {
 
     appData.showResult();
     if (start.innerHTML === 'Рассчитать') {
-      //appData.blockInputs();
       start.innerHTML = 'Сбросить';
       let inputText = document.querySelectorAll('input');
       inputText.forEach(function(item){
