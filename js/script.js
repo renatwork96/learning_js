@@ -95,13 +95,13 @@ let appData = {
   },
 
   showResult: function() {
-    budgetMonthValue.value = appData.budgetMonth;
-    budgetDayValue.value = appData.budgetDay;
-    expensesMonthValue.value = appData.expensesMonth;
-    additionalExpensesValue.value = appData.addExpenses.join(', ');
-    additionalIncmeValue.value = appData.addIncome.join(', ');
-    targetMonthValue.value = Math.ceil(appData.getTargetMonth());
-    incomePeriodValue.value =  appData.calcPeriod();
+    budgetMonthValue.value = this.budgetMonth;
+    budgetDayValue.value = this.budgetDay;
+    expensesMonthValue.value = this.expensesMonth;
+    additionalExpensesValue.value = this.addExpenses.join(', ');
+    additionalIncmeValue.value = this.addIncome.join(', ');
+    targetMonthValue.value = Math.ceil(this.getTargetMonth());
+    incomePeriodValue.value =  this.calcPeriod();
     
   },
 
@@ -204,13 +204,13 @@ let appData = {
   },
 
   getStatusIncome: function() {
-    if (appData.budgetDay >= 1200) {
+    if (this.budgetDay >= 1200) {
       return ('У вас высокий уровень дохода');
-    } else if (1200 > appData.budgetDay && appData.budgetDay >= 600) {
+    } else if (1200 > this.budgetDay && this.budgetDay >= 600) {
       return ('У вас средний уровень дохода');
-    } else if (600 > appData.budgetDay && appData.budgetDay >= 0) {
+    } else if (600 > this.budgetDay && this.budgetDay >= 0) {
       return ('К сожалению у вас уровень дохода ниже среднего');
-    } else if (appData.budgetDay < 0) {
+    } else if (this.budgetDay < 0) {
       return ('Что то пошло не так');
     }
   },
@@ -218,8 +218,8 @@ let appData = {
   getInfoDeposit: function(){
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
     if(appData.deposit) {
-      appData.precentDeposit = checkQuestionNumbers('Какой годовой процент?');
-      appData.moneyDeposit = checkQuestionNumbers('Какая сумма заложена?');
+      this.precentDeposit = checkQuestionNumbers('Какой годовой процент?');
+      this.moneyDeposit = checkQuestionNumbers('Какая сумма заложена?');
     }
   },
   calcPeriod: function() {
@@ -239,11 +239,11 @@ let appData = {
     appData.deposit = false;
     appData.precentDeposit = 0;
     appData.moneyDeposit = 0;
-    budgetMonthValue.value = appData.budgetMonth;
-    budgetDayValue.value = appData.budgetDay;
-    expensesMonthValue.value = appData.expensesMonth;
-    additionalExpensesValue.value = appData.addExpenses;
-    additionalIncmeValue.value = appData.addIncome;
+    budgetMonthValue.value = this.budgetMonth;
+    budgetDayValue.value = this.budgetDay;
+    expensesMonthValue.value = this.expensesMonth;
+    additionalExpensesValue.value = this.addExpenses;
+    additionalIncmeValue.value = this.addIncome;
     targetMonthValue.value = 'Срок';
     incomePeriodValue.value =  0;
   }
