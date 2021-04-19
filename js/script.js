@@ -170,7 +170,7 @@ let appData = {
   getExpensesMonth: function() {
     let sum = 0;
     for (let key in appData.expenses) {
-      sum += +appData.expenses[key];
+      sum += +this.expenses[key];
     }
     return sum;
   },
@@ -178,7 +178,7 @@ let appData = {
   getIncomeMonth: function() {
     let sum = 0;
     for (let key in appData.income) {
-      sum += +appData.income[key];
+      sum += +this.income[key];
     }
     return sum;
     
@@ -223,7 +223,7 @@ let appData = {
     }
   },
   calcPeriod: function() {
-    return appData.budgetMonth * periodSelect.value;
+    return this.budgetMonth * periodSelect.value;
   },
 
   reset: function() {
