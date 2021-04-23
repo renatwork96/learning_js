@@ -234,7 +234,8 @@ AppData.prototype.reset = function() {
     this.deposit = false;
     this.precentDeposit = 0;
     this.moneyDeposit = 0;
-    
+    periodAmount.innerHTML = 1;
+    incomePeriodValue.value =  1;
     
     let inputText = document.querySelectorAll('input[type=text]');
 
@@ -259,7 +260,7 @@ AppData.prototype.reset = function() {
     cancel.style.display = 'none';
     expensesPlus.style.display = 'block';
     incomePlus.style.display = 'block';
-
+    document.querySelector('.period-select').value = 1;
     expensesItems = document.querySelectorAll('.expenses-items');
     incomeItems = document.querySelectorAll('.income-items');
   };
