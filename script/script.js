@@ -46,11 +46,9 @@ window.addEventListener('DOMContentLoaded', function() {
       timerMinutes.textContent = timer.minutes;
       timerSeconds.textContent = timer.seconds;
 
-      if(timer.timeRemaning >=0){
-        updateClock();
-      } else {
+      if(timer.timeRemaning < 0){
         clearInterval(timerId);
-      }
+      } 
     }
     setInterval(updateClock, 1000);
   }
