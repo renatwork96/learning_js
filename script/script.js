@@ -47,15 +47,14 @@ window.addEventListener('DOMContentLoaded', function() {
       timerSeconds.textContent = timer.seconds;
 
       if(timer.timeRemaning >=0){
-        setInterval(updateClock, 1000);
+        updateClock();
       } else {
         clearInterval(timerId);
       }
     }
-    
-    updateClock();
+    setInterval(updateClock, 1000);
   }
 
   //countTimer();
-  timerId = countTimer('27 april 2021');
+  timerId = countTimer('29 april 2021');
 });

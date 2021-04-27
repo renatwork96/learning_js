@@ -47,4 +47,5 @@ window.addEventListener('DOMContentLoaded', function() {
     let dayBeforeNewYear = Math.ceil((dateNewYear.getTime() - dateNow.getTime()) / ( 1000 * 60 * 60 * 24 ));
     beforeNewYear.textContent = dayBeforeNewYear;
   }
+  setInterval(message, 1000);
 });
