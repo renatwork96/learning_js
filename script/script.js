@@ -209,7 +209,6 @@ window.addEventListener('DOMContentLoaded', function() {
         
         let dotLi = document.createElement('li');
         dotLi.classList.add('dot');
-        console.log(dotLi);
         portfolioDots.appendChild(dotLi);
 
         if (i === 0) {
