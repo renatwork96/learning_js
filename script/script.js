@@ -307,4 +307,138 @@ window.addEventListener('DOMContentLoaded', function() {
 
   slider();
 
+  //Смена фото 
+  const command = document.getElementById('command');
+  const comandPhotos = document.querySelectorAll('.command__photo');
+  let comandPhotosImg = [];
+  
+  command.addEventListener('mouseover', (event) => {
+    
+    let target = event.target;
+
+    for(let i = 0; i < comandPhotos.length; i++) {
+
+      if (target === comandPhotos[i]) {
+        comandPhotosImg[i] = event.target.src;
+        event.target.src = event.target.dataset.img;
+      }
+
+    }
+
+  });
+
+  command.addEventListener('mouseout', (event) => {
+
+    let target = event.target;
+
+    for(let i = 0; i < comandPhotos.length; i++) {
+
+      if (target === comandPhotos[i]) {
+        event.target.src = comandPhotosImg[i];
+      }
+
+    }
+
+  });
+
+  //Калькулятор
+  const inputCalcSquare = document.querySelector('.calc-square');
+  const inputCalcCount = document.querySelector('.calc-count');
+  const inputCalcDay = document.querySelector('.calc-day');
+  const inputForm1Name = document.getElementById('form1-name');
+  const inputForm1Email = document.getElementById('form1-email');
+  const inputForm1Phone = document.getElementById('form1-phone');
+  const inputForm2Name = document.getElementById('form2-name');
+  const inputForm2Message = document.getElementById('form2-message');
+  const inputForm2Email = document.getElementById('form2-email');
+  const inputForm2Phone = document.getElementById('form2-phone');
+
+
+  inputCalcSquare.addEventListener('input', () => {
+    inputCalcSquare.value =  inputCalcSquare.value.replace(/\D/g, '');
+  });
+
+  inputCalcCount.addEventListener('input', () => {
+    inputCalcCount.value =  inputCalcCount.value.replace(/\D/g, '');
+  });
+
+  inputCalcDay.addEventListener('input', () => {
+    inputCalcDay.value =  inputCalcDay.value.replace(/\D/g, '');
+  });
+
+
+  //inputForm1Name
+  inputForm1Name.addEventListener('input', () => {
+    inputForm1Name.value =  inputForm1Name.value.replace(/[^а-яё \-]/ig,'');
+  });
+
+  inputForm1Name.addEventListener('blur', () => {
+    inputForm1Name.value = inputForm1Name.value.toLowerCase();
+    inputForm1Name.value =  inputForm1Name.value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
+    inputForm2Message.value =  inputForm2Message.value.replace(/\s+/g, ' ');
+    inputForm2Message.value =  inputForm2Message.value.replace(/\-+/g, '-');
+    inputForm2Message.value =  inputForm2Message.value.replace(/^\s*/,'');
+  });
+
+
+  //inputForm1Email
+  inputForm1Email.addEventListener('input', () => {
+    inputForm1Email.value =  inputForm1Email.value.replace(/[^a-z@.!~*'\_\-]/ig,'');
+  });
+
+
+  //inputForm1Phone
+  inputForm1Phone.addEventListener('input', () => {
+    inputForm1Phone.value =  inputForm1Phone.value.replace(/[^0-9\-()]/g, '');
+  });
+
+  inputForm1Phone.addEventListener('blur', () => {
+    inputForm1Phone.value =  inputForm1Phone.value.replace(/\-+/g, '-');
+    inputForm1Phone.value =  inputForm1Phone.value.replace(/^\s*/,'');
+  });
+
+
+  //inputForm2Name
+  inputForm2Name.addEventListener('input', () => {
+    inputForm2Name.value =  inputForm2Name.value.replace(/[^а-яё \-]/ig,'');
+  });
+
+  inputForm2Name.addEventListener('blur', () => {
+    inputForm2Name.value = inputForm2Name.value.toLowerCase();
+    inputForm2Name.value =  inputForm2Name.value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
+    inputForm2Message.value =  inputForm2Message.value.replace(/\s+/g, ' ');
+    inputForm2Message.value =  inputForm2Message.value.replace(/\-+/g, '-');
+    inputForm2Message.value =  inputForm2Message.value.replace(/^\s*/,'');
+  });
+
+
+  //inputForm2Message
+  inputForm2Message.addEventListener('input', () => {
+    inputForm2Message.value =  inputForm2Message.value.replace(/[^а-яё \-]/ig,'');
+  });
+
+  inputForm2Message.addEventListener('blur', () => {
+    inputForm2Message.value =  inputForm2Message.value.replace(/\s+/g, ' ');
+    inputForm2Message.value =  inputForm2Message.value.replace(/\-+/g, '-');
+    inputForm2Message.value =  inputForm2Message.value.replace(/^\s*/,'');
+  });
+
+
+  //inputForm2Email
+  inputForm2Email.addEventListener('input', () => {
+    inputForm2Email.value =  inputForm2Email.value.replace(/[^a-z@.!~*'\_\-]/ig,'');
+  });
+
+
+  //inputForm2Phone
+  inputForm2Phone.addEventListener('input', () => {
+    inputForm2Phone.value =  inputForm2Phone.value.replace(/[^0-9\-()]/g, '');
+  });
+
+  inputForm2Phone.addEventListener('blur', () => {
+    inputForm2Phone.value =  inputForm2Phone.value.replace(/\-+/g, '-');
+    inputForm2Phone.value =  inputForm2Phone.value.replace(/^\s*/,'');
+  });
+
+
 });
