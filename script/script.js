@@ -341,104 +341,85 @@ window.addEventListener('DOMContentLoaded', function() {
 
   });
 
-  //Калькулятор
-  const inputCalcSquare = document.querySelector('.calc-square');
-  const inputCalcCount = document.querySelector('.calc-count');
-  const inputCalcDay = document.querySelector('.calc-day');
-  const inputForm1Name = document.getElementById('form1-name');
-  const inputForm1Email = document.getElementById('form1-email');
-  const inputForm1Phone = document.getElementById('form1-phone');
-  const inputForm2Name = document.getElementById('form2-name');
-  const inputForm2Message = document.getElementById('form2-message');
-  const inputForm2Email = document.getElementById('form2-email');
-  const inputForm2Phone = document.getElementById('form2-phone');
+  //Проверка форм
+  
+  const inputsField = document.querySelectorAll('input');
+  
+  for (let i = 0; i < inputsField.length; i++) {
 
+    //Для калькулятора
+    if (inputsField[i].matches('.calc-square') || inputsField[i].matches('.calc-count') || inputsField[i].matches('.calc-day')) {
 
-  inputCalcSquare.addEventListener('input', () => {
-    inputCalcSquare.value =  inputCalcSquare.value.replace(/\D/g, '');
-  });
+      inputsField[i].addEventListener('input', () => {
+        inputsField[i].value =  inputsField[i].value.replace(/\D/g, '');
+      });
 
-  inputCalcCount.addEventListener('input', () => {
-    inputCalcCount.value =  inputCalcCount.value.replace(/\D/g, '');
-  });
+    }
+    //console.log(inputsField[i]);
+    // let aaa = /.+/g;
+    // if (inputsField[i].match(aaa)) {
+    //   console.log(inputsField[i]);
+    //   inputsField[i].addEventListener('input', () => {
+    //     inputsField[i].value =  inputsField[i].value.replace(/\D/g, '');
+    //   });
 
-  inputCalcDay.addEventListener('input', () => {
-    inputCalcDay.value =  inputCalcDay.value.replace(/\D/g, '');
-  });
+    // }
 
+    //Для имен
+    if (inputsField[i].matches('#form1-name') || inputsField[i].matches('#form2-name') || inputsField[i].matches('#form3-name')) {
 
-  //inputForm1Name
-  inputForm1Name.addEventListener('input', () => {
-    inputForm1Name.value =  inputForm1Name.value.replace(/[^а-яё \-]/ig,'');
-  });
+      inputsField[i].addEventListener('input', () => {
+        inputsField[i].value =  inputsField[i].value.replace(/[^а-яё \-]/ig,'');
+      });
 
-  inputForm1Name.addEventListener('blur', () => {
-    inputForm1Name.value = inputForm1Name.value.toLowerCase();
-    inputForm1Name.value =  inputForm1Name.value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
-    inputForm2Message.value =  inputForm2Message.value.replace(/\s+/g, ' ');
-    inputForm2Message.value =  inputForm2Message.value.replace(/\-+/g, '-');
-    inputForm2Message.value =  inputForm2Message.value.replace(/^\s*/,'');
-  });
+      inputsField[i].addEventListener('blur', () => {
+        inputsField[i].value = inputsField[i].value.toLowerCase();
+        inputsField[i].value =  inputsField[i].value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
+        inputsField[i].value =  inputsField[i].value.replace(/\s+/g, ' ');
+        inputsField[i].value =  inputsField[i].value.replace(/\-+/g, '-');
+        inputsField[i].value =  inputsField[i].value.replace(/^\s*/,'');
+      });
 
+    }
+    
+    //Для Email
+    if (inputsField[i].matches('#form1-email') || inputsField[i].matches('#form2-email') || inputsField[i].matches('#form3-email')) {
 
-  //inputForm1Email
-  inputForm1Email.addEventListener('input', () => {
-    inputForm1Email.value =  inputForm1Email.value.replace(/[^a-z@.!~*'\_\-]/ig,'');
-  });
+      inputsField[i].addEventListener('input', () => {
+        inputsField[i].value =  inputsField[i].value.replace(/[^a-z@.!~*'\_\-]/ig,'');
+      });
 
+    }
 
-  //inputForm1Phone
-  inputForm1Phone.addEventListener('input', () => {
-    inputForm1Phone.value =  inputForm1Phone.value.replace(/[^0-9\-()]/g, '');
-  });
+    //Для телефона
+    if (inputsField[i].matches('#form1-phone') || inputsField[i].matches('#form2-phone') || inputsField[i].matches('#form3-phone')) {
 
-  inputForm1Phone.addEventListener('blur', () => {
-    inputForm1Phone.value =  inputForm1Phone.value.replace(/\-+/g, '-');
-    inputForm1Phone.value =  inputForm1Phone.value.replace(/^\s*/,'');
-  });
+      inputsField[i].addEventListener('input', () => {
+        inputsField[i].value =  inputsField[i].value.replace(/[^0-9\-()]/g, '');
+      });
 
+      inputsField[i].addEventListener('blur', () => {
+        inputsField[i].value =  inputsField[i].value.replace(/\-+/g, '-');
+        inputsField[i].value =  inputsField[i].value.replace(/^\s*/,'');
+      });
 
-  //inputForm2Name
-  inputForm2Name.addEventListener('input', () => {
-    inputForm2Name.value =  inputForm2Name.value.replace(/[^а-яё \-]/ig,'');
-  });
+    }
 
-  inputForm2Name.addEventListener('blur', () => {
-    inputForm2Name.value = inputForm2Name.value.toLowerCase();
-    inputForm2Name.value =  inputForm2Name.value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
-    inputForm2Message.value =  inputForm2Message.value.replace(/\s+/g, ' ');
-    inputForm2Message.value =  inputForm2Message.value.replace(/\-+/g, '-');
-    inputForm2Message.value =  inputForm2Message.value.replace(/^\s*/,'');
-  });
+    //Для сообщения
+    if (inputsField[i].matches('#form1-message') || inputsField[i].matches('#form2-message')) {
 
+      inputsField[i].addEventListener('input', () => {
+        inputsField[i].value =  inputsField[i].value.replace(/[^а-яё \-]/ig,'');
+      });
 
-  //inputForm2Message
-  inputForm2Message.addEventListener('input', () => {
-    inputForm2Message.value =  inputForm2Message.value.replace(/[^а-яё \-]/ig,'');
-  });
+      inputsField[i].addEventListener('blur', () => {
+        inputsField[i].value =  inputsField[i].value.replace(/\s+/g, ' ');
+        inputsField[i].value =  inputsField[i].value.replace(/\-+/g, '-');
+        inputsField[i].value =  inputsField[i].value.replace(/^\s*/,'');
+      });
 
-  inputForm2Message.addEventListener('blur', () => {
-    inputForm2Message.value =  inputForm2Message.value.replace(/\s+/g, ' ');
-    inputForm2Message.value =  inputForm2Message.value.replace(/\-+/g, '-');
-    inputForm2Message.value =  inputForm2Message.value.replace(/^\s*/,'');
-  });
+     }
 
-
-  //inputForm2Email
-  inputForm2Email.addEventListener('input', () => {
-    inputForm2Email.value =  inputForm2Email.value.replace(/[^a-z@.!~*'\_\-]/ig,'');
-  });
-
-
-  //inputForm2Phone
-  inputForm2Phone.addEventListener('input', () => {
-    inputForm2Phone.value =  inputForm2Phone.value.replace(/[^0-9\-()]/g, '');
-  });
-
-  inputForm2Phone.addEventListener('blur', () => {
-    inputForm2Phone.value =  inputForm2Phone.value.replace(/\-+/g, '-');
-    inputForm2Phone.value =  inputForm2Phone.value.replace(/^\s*/,'');
-  });
-
+  }
 
 });
