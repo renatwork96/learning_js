@@ -415,9 +415,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
     inputs.forEach((item) => {
 
-      item.addEventListener('input', () => {
-        item.value =  item.value.replace(/\D/g, '');
-      });
+        item.addEventListener('input', () => {
+          item.value =  item.value.replace(/\D/g, '');
+        });
 
     });
 
@@ -426,7 +426,7 @@ window.addEventListener('DOMContentLoaded', function() {
   validateInput('#form1');
   validateInput('#form2');
   validateInput('#form3');
-  validateCalc('.calc-item');
+  validateCalc('.calc-item > input');
 
 
   //Калькулятор
@@ -443,10 +443,8 @@ window.addEventListener('DOMContentLoaded', function() {
       let total = 0;
       let countValue = 1;
       let dayValue = 1;
-      const typeValue = calcType.options[calcType.selectedIndex];
+      const typeValue = calcType.options[calcType.selectedIndex].value;
       const squareValue = +calcSquare.value;
-
-      console.log(typeValue);
 
       if (calcCount.value > 1) {
         countValue += (calcCount.value - 1) / 10;
