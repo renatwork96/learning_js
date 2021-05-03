@@ -342,73 +342,70 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
   //Проверка форм
-  
-  const inputSelector = document.querySelectorAll('input');
-
 
   const validateInput = (selector) => {
 
     const form = document.querySelector(selector);
     const inputSelector = form.querySelectorAll('input');
 
-    for (let i = 0; i < inputSelector.length; i++) {
+    inputSelector.forEach((item) => {
 
       //Для имен
-      if (inputSelector[i].getAttribute('name') === "user_name") {
+      if (item.getAttribute('name') === "user_name") {
 
-        inputSelector[i].addEventListener('input', () => {
-          inputSelector[i].value =  inputSelector[i].value.replace(/[^а-яё \-]/ig,'');
+        item.addEventListener('input', () => {
+          item.value =  item.value.replace(/[^а-яё \-]/ig,'');
         });
 
-        inputSelector[i].addEventListener('blur', () => {
-          inputSelector[i].value = inputSelector[i].value.toLowerCase();
-          inputSelector[i].value =  inputSelector[i].value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
-          inputSelector[i].value =  inputSelector[i].value.replace(/\s+/g, ' ');
-          inputSelector[i].value =  inputSelector[i].value.replace(/\-+/g, '-');
-          inputSelector[i].value =  inputSelector[i].value.replace(/^\s*/,'');
+        item.addEventListener('blur', () => {
+          item.value = item.value.toLowerCase();
+          item.value =  item.value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
+          item.value =  item.value.replace(/\s+/g, ' ');
+          item.value =  item.value.replace(/\-+/g, '-');
+          item.value =  item.value.replace(/^\s*/,'');
         });
 
       }
 
       //Для email
-      if (inputSelector[i].getAttribute('name') === "user_email") {
+      if (item.getAttribute('name') === "user_email") {
 
-        inputSelector[i].addEventListener('input', () => {
-          inputSelector[i].value =  inputSelector[i].value.replace(/[^a-z@.!~*'\_\-]/ig,'');
+        item.addEventListener('input', () => {
+          item.value =  item.value.replace(/[^a-z@.!~*'\_\-]/ig,'');
         });
 
       }
 
       //Для телефона
-      if (inputSelector[i].getAttribute('name') === "user_phone") {
+      if (item.getAttribute('name') === "user_phone") {
 
-        inputSelector[i].addEventListener('input', () => {
-          inputSelector[i].value =  inputSelector[i].value.replace(/[^0-9\-()]/g, '');
+        item.addEventListener('input', () => {
+          item.value =  item.value.replace(/[^0-9\-()]/g, '');
         });
 
-        inputSelector[i].addEventListener('blur', () => {
-          inputSelector[i].value =  inputSelector[i].value.replace(/\-+/g, '-');
-          inputSelector[i].value =  inputSelector[i].value.replace(/^\s*/,'');
+        item.addEventListener('blur', () => {
+          item.value =  item.value.replace(/\-+/g, '-');
+          item.value =  item.value.replace(/^\s*/,'');
         });
 
       }
 
       //Для сообщения
-      if (inputSelector[i].getAttribute('name') === "user_message") {
+      if (item.getAttribute('name') === "user_message") {
 
-        inputSelector[i].addEventListener('input', () => {
-          inputSelector[i].value =  inputSelector[i].value.replace(/[^а-яё \-]/ig,'');
+        item.addEventListener('input', () => {
+          item.value =  item.value.replace(/[^а-яё \-]/ig,'');
         });
 
-        inputSelector[i].addEventListener('blur', () => {
-          inputSelector[i].value =  inputSelector[i].value.replace(/\s+/g, ' ');
-          inputSelector[i].value =  inputSelector[i].value.replace(/\-+/g, '-');
-          inputSelector[i].value =  inputSelector[i].value.replace(/^\s*/,'');
+        item.addEventListener('blur', () => {
+          item.value =  item.value.replace(/\s+/g, ' ');
+          item.value =  item.value.replace(/\-+/g, '-');
+          item.value =  item.value.replace(/^\s*/,'');
         });
 
       }
 
-    }
+    });
 
   };
 
@@ -416,13 +413,13 @@ window.addEventListener('DOMContentLoaded', function() {
 
     const inputs = document.querySelectorAll(selector);
 
-    for (let i = 0; i < inputs.length; i++) {
+    inputs.forEach((item) => {
 
-      inputs[i].addEventListener('input', () => {
-        inputs[i].value =  inputs[i].value.replace(/\D/g, '');
+      item.addEventListener('input', () => {
+        item.value =  item.value.replace(/\D/g, '');
       });
 
-    }
+    });
 
   };
 
@@ -443,11 +440,13 @@ window.addEventListener('DOMContentLoaded', function() {
       totalValue = document.getElementById('total');
 
     const countSum = () => {
-      let total = 0,
-        countValue = 1,
-        dayValue = 1;
-      const typeValue = calcType.options[calcType.selectedIndex].value,
-        squareValue = +calcSquare.value;
+      let total = 0;
+      let countValue = 1;
+      let dayValue = 1;
+      const typeValue = calcType.options[calcType.selectedIndex];
+      const squareValue = +calcSquare.value;
+
+      console.log(typeValue);
 
       if (calcCount.value > 1) {
         countValue += (calcCount.value - 1) / 10;
@@ -473,13 +472,13 @@ window.addEventListener('DOMContentLoaded', function() {
       //   console.log(1);
       // }
 
-      // if (target === calcType || target === calcSquare || target === calcDay || target === calcCount) {
-      //   console.log(1);
-      // }
-
-      if (target.matches('select') || target.matches('input')) {
+      if (target === calcType || target === calcSquare || target === calcDay || target === calcCount) {
         countSum();
       }
+
+      // if (target.matches('select') || target.matches('input')) {
+      //   countSum();
+      // }
     });
   };
 
