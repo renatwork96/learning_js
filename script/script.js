@@ -460,8 +460,34 @@ window.addEventListener('DOMContentLoaded', function() {
         total = Math.round(price * typeValue * squareValue * countValue * dayValue);
       }
 
-      totalValue.textContent = total;
+
+      const animate = ({timing, draw, duration}, callback) => {
+        let start = performance.now();
+        requestAnimationFrame(function animate(time) {
+            let timeFraction = (time - start) / duration;
+            if (timeFraction > 1) timeFraction = 1;
+            let progress = timing(timeFraction);
+            draw(progress); 
+            if (timeFraction < 1) {
+                requestAnimationFrame(animate);
+            }
+        });
+      };
+
+      const recountTotal = () => {
+        totalValue.textContent = 0;
+        animate({
+          duration: 1000,
+          timing(timeFraction) {
+              return timeFraction;
+          },
+          draw(progress) {
+              totalValue.textContent = Math.floor(progress * total);
+          }
+        });
+      };
       
+      recountTotal();      
     };
 
     calcBlock.addEventListener('change', (event) => {
