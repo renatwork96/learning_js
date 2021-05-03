@@ -343,83 +343,89 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //Проверка форм
   
-  const inputsField = document.querySelectorAll('input');
-  
-  for (let i = 0; i < inputsField.length; i++) {
+  const validateInput = (selector) => {
 
-    //Для калькулятора
-    if (inputsField[i].matches('.calc-square') || inputsField[i].matches('.calc-count') || inputsField[i].matches('.calc-day')) {
+    const form = document.querySelector(selector);
+    const inputSelector = form.querySelectorAll('input');
 
-      inputsField[i].addEventListener('input', () => {
-        inputsField[i].value =  inputsField[i].value.replace(/\D/g, '');
+    for (let i = 0; i < inputSelector.length; i++) {
+
+      //Для имен
+      if (inputSelector[i].getAttribute('name') === "user_name") {
+
+        inputSelector[i].addEventListener('input', () => {
+          inputSelector[i].value =  inputSelector[i].value.replace(/[^а-яё \-]/ig,'');
+        });
+
+        inputSelector[i].addEventListener('blur', () => {
+          inputSelector[i].value = inputSelector[i].value.toLowerCase();
+          inputSelector[i].value =  inputSelector[i].value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
+          inputSelector[i].value =  inputSelector[i].value.replace(/\s+/g, ' ');
+          inputSelector[i].value =  inputSelector[i].value.replace(/\-+/g, '-');
+          inputSelector[i].value =  inputSelector[i].value.replace(/^\s*/,'');
+        });
+
+      }
+
+      //Для email
+      if (inputSelector[i].getAttribute('name') === "user_email") {
+
+        inputSelector[i].addEventListener('input', () => {
+          inputSelector[i].value =  inputSelector[i].value.replace(/[^a-z@.!~*'\_\-]/ig,'');
+        });
+
+      }
+
+      //Для телефона
+      if (inputSelector[i].getAttribute('name') === "user_phone") {
+
+        inputSelector[i].addEventListener('input', () => {
+          inputSelector[i].value =  inputSelector[i].value.replace(/[^0-9\-()]/g, '');
+        });
+
+        inputSelector[i].addEventListener('blur', () => {
+          inputSelector[i].value =  inputSelector[i].value.replace(/\-+/g, '-');
+          inputSelector[i].value =  inputSelector[i].value.replace(/^\s*/,'');
+        });
+
+      }
+
+      //Для сообщения
+      if (inputSelector[i].getAttribute('name') === "user_message") {
+
+        inputSelector[i].addEventListener('input', () => {
+          inputSelector[i].value =  inputSelector[i].value.replace(/[^а-яё \-]/ig,'');
+        });
+
+        inputSelector[i].addEventListener('blur', () => {
+          inputSelector[i].value =  inputSelector[i].value.replace(/\s+/g, ' ');
+          inputSelector[i].value =  inputSelector[i].value.replace(/\-+/g, '-');
+          inputSelector[i].value =  inputSelector[i].value.replace(/^\s*/,'');
+        });
+
+      }
+
+    }
+
+  };
+
+  const validateCalc = (selector) => {
+
+    const inputs = document.querySelectorAll(selector);
+
+    for (let i = 0; i < inputs.length; i++) {
+
+      inputs[i].addEventListener('input', () => {
+        inputs[i].value =  inputs[i].value.replace(/\D/g, '');
       });
 
     }
-    //console.log(inputsField[i]);
-    // let aaa = /.+/g;
-    // if (inputsField[i].match(aaa)) {
-    //   console.log(inputsField[i]);
-    //   inputsField[i].addEventListener('input', () => {
-    //     inputsField[i].value =  inputsField[i].value.replace(/\D/g, '');
-    //   });
 
-    // }
+  };
 
-    //Для имен
-    if (inputsField[i].matches('#form1-name') || inputsField[i].matches('#form2-name') || inputsField[i].matches('#form3-name')) {
-
-      inputsField[i].addEventListener('input', () => {
-        inputsField[i].value =  inputsField[i].value.replace(/[^а-яё \-]/ig,'');
-      });
-
-      inputsField[i].addEventListener('blur', () => {
-        inputsField[i].value = inputsField[i].value.toLowerCase();
-        inputsField[i].value =  inputsField[i].value.replace(/( |^)[а-яё]/g, function(x){ return x.toUpperCase();});
-        inputsField[i].value =  inputsField[i].value.replace(/\s+/g, ' ');
-        inputsField[i].value =  inputsField[i].value.replace(/\-+/g, '-');
-        inputsField[i].value =  inputsField[i].value.replace(/^\s*/,'');
-      });
-
-    }
-    
-    //Для Email
-    if (inputsField[i].matches('#form1-email') || inputsField[i].matches('#form2-email') || inputsField[i].matches('#form3-email')) {
-
-      inputsField[i].addEventListener('input', () => {
-        inputsField[i].value =  inputsField[i].value.replace(/[^a-z@.!~*'\_\-]/ig,'');
-      });
-
-    }
-
-    //Для телефона
-    if (inputsField[i].matches('#form1-phone') || inputsField[i].matches('#form2-phone') || inputsField[i].matches('#form3-phone')) {
-
-      inputsField[i].addEventListener('input', () => {
-        inputsField[i].value =  inputsField[i].value.replace(/[^0-9\-()]/g, '');
-      });
-
-      inputsField[i].addEventListener('blur', () => {
-        inputsField[i].value =  inputsField[i].value.replace(/\-+/g, '-');
-        inputsField[i].value =  inputsField[i].value.replace(/^\s*/,'');
-      });
-
-    }
-
-    //Для сообщения
-    if (inputsField[i].matches('#form1-message') || inputsField[i].matches('#form2-message')) {
-
-      inputsField[i].addEventListener('input', () => {
-        inputsField[i].value =  inputsField[i].value.replace(/[^а-яё \-]/ig,'');
-      });
-
-      inputsField[i].addEventListener('blur', () => {
-        inputsField[i].value =  inputsField[i].value.replace(/\s+/g, ' ');
-        inputsField[i].value =  inputsField[i].value.replace(/\-+/g, '-');
-        inputsField[i].value =  inputsField[i].value.replace(/^\s*/,'');
-      });
-
-     }
-
-  }
+  validateInput('#form1');
+  validateInput('#form2');
+  validateInput('#form3');
+  validateCalc('.calc-item');
 
 });
