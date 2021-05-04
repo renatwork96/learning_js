@@ -380,13 +380,13 @@ window.addEventListener('DOMContentLoaded', function() {
       if (item.getAttribute('name') === "user_phone") {
 
         item.addEventListener('input', () => {
-          item.value =  item.value.replace(/[^0-9\-()]/g, '');
+          item.value =  item.value.replace(/[^0-9\+]/g, '');
         });
 
-        item.addEventListener('blur', () => {
-          item.value =  item.value.replace(/\-+/g, '-');
-          item.value =  item.value.replace(/^\s*/,'');
-        });
+        // item.addEventListener('blur', () => {
+        //   item.value =  item.value.replace(/\-+/g, '-');
+        //   item.value =  item.value.replace(/^\s*/,'');
+        // });
 
       }
 
@@ -394,7 +394,7 @@ window.addEventListener('DOMContentLoaded', function() {
       if (item.getAttribute('name') === "user_message") {
 
         item.addEventListener('input', () => {
-          item.value =  item.value.replace(/[^а-яё \-]/ig,'');
+          item.value =  item.value.replace(/[^а-яё0-9 \.,!\-]/ig,'');
         });
 
         item.addEventListener('blur', () => {
@@ -507,5 +507,77 @@ window.addEventListener('DOMContentLoaded', function() {
   };
 
   calc(100);
+
+
+  //send-ajax-form
+  const sendForm = (formId, textStyle) => {
+
+    const errorVessage = 'Что-то пошло не так...',
+      loadMessage = 'Загрузка...',
+      successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
+
+    const form = document.getElementById(formId);
+
+    const statusMessage = document.createElement('div');
+    statusMessage.style.cssText = textStyle;
+    
+    form.addEventListener('submit', (event) => {
+      
+      event.preventDefault();
+      form.appendChild(statusMessage);
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form);
+      let body = {};
+
+      // for (let val of formData.entries()) {
+      //   body[val[0]] = val[1];
+      // }
+
+      formData.forEach((val, key) => {
+        body[key] = val;
+      });
+
+      postData(body, 
+        () => {
+          statusMessage.textContent = successMessage;  
+          form.reset();  
+          setTimeout(() => {statusMessage.textContent = '';}, 4000);      
+        }, 
+        (error) => {
+          statusMessage.textContent = errorVessage;
+          console.error(error);
+        });
+      
+    });
+
+    const postData = (body, outputData, errorData) => {
+
+      const request = new XMLHttpRequest();
+
+      request.addEventListener('readystatechange', () => {
+
+        if (request.readyState !== 4) {
+          return;
+        }
+
+        if (request.status === 200) {
+          outputData();
+        } else {
+          errorData(request.status);
+        }
+
+      });
+
+      request.open('POST', './server.php');
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.send(JSON.stringify(body));
+
+    };
+
+  };
+
+  sendForm('form1', 'font-size: 2rem;');
+  sendForm('form2', 'font-size: 2rem;');
+  sendForm('form3', 'font-size: 2rem; color: white;');
 
 });
