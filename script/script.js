@@ -511,7 +511,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //send-ajax-form
   const sendForm = (formId, textStyle) => {
-
+    
     const errorVessage = 'Что-то пошло не так...',
       loadMessage = 'Загрузка...',
       successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
@@ -529,50 +529,51 @@ window.addEventListener('DOMContentLoaded', function() {
       const formData = new FormData(form);
       let body = {};
 
-      // for (let val of formData.entries()) {
-      //   body[val[0]] = val[1];
-      // }
-
       formData.forEach((val, key) => {
         body[key] = val;
       });
 
-      postData(body, 
-        () => {
+      const postData = (body) => {
+
+        return new Promise((resolve, reject) => {
+
+          const request = new XMLHttpRequest();
+
+          request.addEventListener('readystatechange', () => {
+
+            if (request.readyState !== 4) {
+              return;
+            }
+
+            if (request.status === 200) {
+              resolve();
+            } else {
+              reject(request.status);
+            }
+
+          });
+
+          request.open('POST', './server.php');
+          request.setRequestHeader('Content-Type', 'application/json');
+          request.send(JSON.stringify(body));
+          
+        });
+
+      };
+
+    
+      postData(body)
+      .then(() => {
           statusMessage.textContent = successMessage;  
           form.reset();  
           setTimeout(() => {statusMessage.textContent = '';}, 4000);      
-        }, 
-        (error) => {
+        })
+      .catch((error) => {
           statusMessage.textContent = errorVessage;
           console.error(error);
         });
       
     });
-
-    const postData = (body, outputData, errorData) => {
-
-      const request = new XMLHttpRequest();
-
-      request.addEventListener('readystatechange', () => {
-
-        if (request.readyState !== 4) {
-          return;
-        }
-
-        if (request.status === 200) {
-          outputData();
-        } else {
-          errorData(request.status);
-        }
-
-      });
-
-      request.open('POST', './server.php');
-      request.setRequestHeader('Content-Type', 'application/json');
-      request.send(JSON.stringify(body));
-
-    };
 
   };
 
