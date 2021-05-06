@@ -32,7 +32,7 @@ function countTimer(deadline){
     return {timeRemaning, hours, minutes, seconds};
   }
 
-  
+  let timerId;
 
   function updateClock() {
     let timer = getTimeRemaining();
@@ -45,7 +45,7 @@ function countTimer(deadline){
       clearInterval(timerId);
     } 
   }
-  setInterval(updateClock, 1000);
+  timerId = setInterval(updateClock, 1000);
 }
 
 export default countTimer;
