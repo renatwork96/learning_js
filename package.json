@@ -1,0 +1,46 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-loader": "^8.0.6",
+    "path": "^0.12.7",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "core-js": "^3.7.0",
+    "dom-closest": "^0.2.0",
+    "dom-node-polyfills": "^1.0.0",
+    "element-closest": "^3.0.2",
+    "element-remove": "^1.0.4",
+    "element-remove-polyfill": "^1.1.0",
+    "es6-promise": "^4.2.8",
+    "fetch-polyfill": "^0.8.2",
+    "formdata-polyfill": "^3.0.20",
+    "nodelist-foreach-polyfill": "^1.2.0",
+    "regenerator-runtime": "^0.13.7",
+    "scroll-behavior-polyfill": "^2.0.13",
+    "url-polyfill": "^1.1.12",
+    "whatwg-fetch": "^3.5.0"
+  },
+  "name": "3dglo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renatwork96/learning_js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renatwork96/learning_js/issues"
+  },
+  "homepage": "https://github.com/renatwork96/learning_js#readme",
+  "description": ""
+}
