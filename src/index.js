@@ -34,7 +34,7 @@ changeAvatar();
 validateInput('#form1');
 validateInput('#form2');
 validateInput('#form3');
-validateCalc('.calc-item > input');
+validateCalc('.calc-block > input');
 
 //Калькулятор
 calc(100);
