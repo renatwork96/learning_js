@@ -27,7 +27,6 @@ const validateInput = (selector) => {
         item.value =  item.value.replace(/\-+/g, '-');
         item.value =  item.value.replace(/^\s*/,'');
         
-
         validName = conditionsForm.test(item.value);
         console.log(validName + " -validName");
 
@@ -38,8 +37,6 @@ const validateInput = (selector) => {
           submit.style.cursor = "default";
           submit.disabled = false;
         }
-        
-        console.log(validName+ " -validName");
       });
 
     }
