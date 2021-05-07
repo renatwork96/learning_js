@@ -19,6 +19,10 @@ const sendForm = (formId, textStyle) => {
     let body = {};
 
     formData.forEach((val, key) => {
+      if (!val) {
+        alert('Поле имя не заполнено');
+        return;
+      }
       body[key] = val;
     });
 
