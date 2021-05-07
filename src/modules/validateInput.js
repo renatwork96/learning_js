@@ -11,6 +11,7 @@ const validateInput = (selector) => {
 
   inputSelector.forEach((item) => {
 
+
     //Для имен
     if (item.getAttribute('name') === "user_name") {
 
@@ -27,8 +28,10 @@ const validateInput = (selector) => {
         item.value =  item.value.replace(/\-+/g, '-');
         item.value =  item.value.replace(/^\s*/,'');
         
+        
         validName = conditionsForm.test(item.value);
         console.log(validName + " -validName");
+        conditionsForm.test(item.value);
 
         if(!validName){
           submit.style.cursor = "not-allowed";
@@ -50,6 +53,8 @@ const validateInput = (selector) => {
         item.value =  item.value.replace(/[^a-z@.!~*'\_\-]/ig,'');
 
         validMail = conditionsForm.test(item.value);
+        conditionsForm.test(item.value);
+
         if(!validMail){
           submit.style.cursor = "not-allowed";
           submit.disabled = true;
@@ -72,6 +77,8 @@ const validateInput = (selector) => {
         item.value =  item.value.replace(/[^0-9\+]/g, '');
 
         validPhone = conditionsForm.test(item.value);
+        conditionsForm.test(item.value);
+        
         if(!validPhone){
           submit.style.cursor = "not-allowed";
           submit.disabled = true;
